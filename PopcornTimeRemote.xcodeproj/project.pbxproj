@@ -16,6 +16,7 @@
 		5C466B601BA292DA0068F37B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C466B5F1BA292DA0068F37B /* AVFoundation.framework */; };
 		5C466B621BA296760068F37B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C466B611BA296760068F37B /* MediaPlayer.framework */; };
 		5C466B641BA29B870068F37B /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B631BA29B870068F37B /* mute.png */; };
+		5C466B681BA2A6DA0068F37B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B671BA2A6DA0068F37B /* Images.xcassets */; };
 		743A6D3319D2BCCE007FB451 /* POPScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743A6D3219D2BCCE007FB451 /* POPScanViewController.m */; };
 		743A6D3C19D2BD52007FB451 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 743A6D3519D2BD52007FB451 /* Device.m */; };
 		743A6D3D19D2BD52007FB451 /* ScanLAN.m in Sources */ = {isa = PBXBuildFile; fileRef = 743A6D3719D2BD52007FB451 /* ScanLAN.m */; };
@@ -63,6 +64,7 @@
 		5C466B5F1BA292DA0068F37B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5C466B611BA296760068F37B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5C466B631BA29B870068F37B /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mute.png; path = images/mute.png; sourceTree = "<group>"; };
+		5C466B671BA2A6DA0068F37B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		743A6D3119D2BCCE007FB451 /* POPScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPScanViewController.h; sourceTree = "<group>"; };
 		743A6D3219D2BCCE007FB451 /* POPScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPScanViewController.m; sourceTree = "<group>"; };
 		743A6D3419D2BD52007FB451 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		743A6D3B19D2BD52007FB451 /* SimplePingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePingHelper.m; sourceTree = "<group>"; };
 		74C5DD5819D31FC5005691C2 /* POPDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDevice.h; sourceTree = "<group>"; };
 		74C5DD5919D31FC5005691C2 /* POPDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPDevice.m; sourceTree = "<group>"; };
-		74CFD4F719D0C640007364DF /* PopcornTimeRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopcornTimeRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74CFD4F719D0C640007364DF /* Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74CFD4FA19D0C640007364DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		74CFD4FC19D0C640007364DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		74CFD4FE19D0C640007364DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -194,7 +196,7 @@
 		74CFD4F819D0C640007364DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74CFD4F719D0C640007364DF /* PopcornTimeRemote.app */,
+				74CFD4F719D0C640007364DF /* Remote.app */,
 				74CFD51219D0C640007364DF /* PopcornTimeRemoteTests.xctest */,
 			);
 			name = Products;
@@ -239,6 +241,7 @@
 				74C5DD5819D31FC5005691C2 /* POPDevice.h */,
 				74C5DD5919D31FC5005691C2 /* POPDevice.m */,
 				74CFD53219D1764C007364DF /* Constants.h */,
+				5C466B671BA2A6DA0068F37B /* Images.xcassets */,
 			);
 			path = PopcornTimeRemote;
 			sourceTree = "<group>";
@@ -302,7 +305,7 @@
 			);
 			name = PopcornTimeRemote;
 			productName = PopcornTimeRemote;
-			productReference = 74CFD4F719D0C640007364DF /* PopcornTimeRemote.app */;
+			productReference = 74CFD4F719D0C640007364DF /* Remote.app */;
 			productType = "com.apple.product-type.application";
 		};
 		74CFD51119D0C640007364DF /* PopcornTimeRemoteTests */ = {
@@ -364,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C466B681BA2A6DA0068F37B /* Images.xcassets in Resources */,
 				5C466B5E1BA288130068F37B /* up.png in Resources */,
 				5C466B641BA29B870068F37B /* mute.png in Resources */,
 				5C466B5D1BA288130068F37B /* right.png in Resources */,
@@ -563,7 +567,7 @@
 				GCC_PREFIX_HEADER = "PopcornTimeRemote/PopcornTimeRemote-Prefix.pch";
 				INFOPLIST_FILE = "PopcornTimeRemote/PopcornTimeRemote-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.popcorn;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Remote;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -581,7 +585,7 @@
 				GCC_PREFIX_HEADER = "PopcornTimeRemote/PopcornTimeRemote-Prefix.pch";
 				INFOPLIST_FILE = "PopcornTimeRemote/PopcornTimeRemote-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.popcorn;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Remote;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
