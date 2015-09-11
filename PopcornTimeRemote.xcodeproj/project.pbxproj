@@ -183,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				74CFD50019D0C640007364DF /* PopcornTimeRemote */,
+				74CFD50119D0C640007364DF /* Supporting Files */,
 				74CFD51919D0C640007364DF /* PopcornTimeRemoteTests */,
 				74CFD4F919D0C640007364DF /* Frameworks */,
 				74CFD4F819D0C640007364DF /* Products */,
@@ -221,7 +222,6 @@
 				74CFD50919D0C640007364DF /* POPAppDelegate.h */,
 				74CFD50A19D0C640007364DF /* POPAppDelegate.m */,
 				74CFD50C19D0C640007364DF /* Images.xcassets */,
-				74CFD50119D0C640007364DF /* Supporting Files */,
 				74CFD52C19D15898007364DF /* POPConnectViewController.h */,
 				74CFD52D19D15898007364DF /* POPConnectViewController.m */,
 				74CFD52F19D16944007364DF /* POPNetworking.h */,
@@ -253,6 +253,7 @@
 				74CFD50819D0C640007364DF /* PopcornTimeRemote-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = PopcornTimeRemote;
 			sourceTree = "<group>";
 		};
 		74CFD51919D0C640007364DF /* PopcornTimeRemoteTests */ = {
