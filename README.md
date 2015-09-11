@@ -5,7 +5,6 @@ This is an Open Source remote control app for Popcorn Time 3.3+ found at http://
 # Screenshot
 
 ![alt tag](https://raw.githubusercontent.com/pob21/PopcornTimeRemote/master/Screenshots/001.PNG)
-![alt tag](https://raw.githubusercontent.com/pob21/PopcornTimeRemote/master/Screenshots/002.PNG)
 
 
 
