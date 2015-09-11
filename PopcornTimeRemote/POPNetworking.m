@@ -251,17 +251,18 @@
 {
     NSString *url = [NSString stringWithFormat:@"%@:%i", host, port];
     
-    
+
+
     if (!contains(url, @"http://")) {
         url = [NSString stringWithFormat:@"http://%@", url];
     }
     
-    
+
     AFJSONRPCClient *client = [AFJSONRPCClient clientWithEndpointURL:[NSURL URLWithString:url]];
     [client.requestSerializer setAuthorizationHeaderFieldWithUsername:user password:password];
     [client.requestSerializer setTimeoutInterval:2];
     
-    
+
     [client invokeMethod:@"getviewstack"
                       success:^(AFHTTPRequestOperation *operation, id responseObject)
      {

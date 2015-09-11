@@ -40,7 +40,9 @@
 }
 
 
+
 #pragma mark - Load View
+
 
 - (void)loadView
 {
@@ -49,7 +51,11 @@
     
     //
     
+
     self.control = [[POPControlView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-150, (self.view.frame.size.height/4), 300, 300)];
+
+
+
     self.control.delegate = self;
     [self.view addSubview:self.control];
     
@@ -126,7 +132,10 @@
     //
     
     self.ordering = @[@"Popularity", @"Date", @"Year", @"Rating"];
+
     self.ordering_tv = @[@"Popularity", @"Updated", @"Year", @"Name", @"Rating"];
+
+
     
     self.sortList = [[POPFilterListView alloc] initWithFrameAndFilters:CGRectMake(0, 0, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height) filters:self.ordering];
     self.sortList.delegate = self;
@@ -147,6 +156,7 @@
     //
     
     [self setTitle:NSLocalizedString(@"Popcorn Time Remote", nil)];
+
     
     
     
@@ -374,9 +384,11 @@
     // lets get everything
     [self.listener send:@"getgenres" params:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+
         NSDictionary *results = responseObject;
 
         NSArray *list = [results objectForKey: @"genres"];
+
 
         if (list) {
             self.genres = [list copy];
@@ -396,6 +408,7 @@
         NSDictionary *results = responseObject;
 
         NSArray *list = [results objectForKey: @"sorters"];
+
         
         if (list) {
             self.ordering = [list copy];
@@ -429,7 +442,9 @@
     [self.listener send:@"getsorters_tv" params:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSArray *results = (NSArray *)responseObject;
+
         NSLog(@"TV Sorters: %@", results);
+
         NSArray *list = [results objectAtIndex:0];
         
         if (list) {
@@ -580,6 +595,7 @@
         NSDictionary *stack = responseObject;
 
         NSArray *stack_list = [stack objectForKey: @"viewstack"];
+
         
         [self handleViewStack:stack_list];
         

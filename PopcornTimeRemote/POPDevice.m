@@ -37,7 +37,7 @@
     
     NSString *address = [defaults objectForKey:@"address"];
     
-    
+
     if (address) {
         return [POPDevice deviceWithAddress:address];
     }

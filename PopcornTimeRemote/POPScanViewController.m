@@ -35,6 +35,7 @@
     
 
     self.desc = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, 60, 260, 50)];
+
     [self.desc setTextColor:UIColorFromRGB(kDefaultColor)];
     self.desc.textAlignment = NSTextAlignmentCenter;
     self.desc.lineBreakMode = NSLineBreakByWordWrapping;
@@ -45,13 +46,16 @@
     
     [self.view addSubview:self.desc];
     
+
     
     self.scanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.scanBtn setTitleColor:UIColorFromRGB(kDefaultColor) forState:UIControlStateNormal];
     [self.scanBtn setBackgroundColor:UIColorFromRGB(kActiveColor)];
     [self.scanBtn setImage:[UIImage imageNamed:@"search-light"] forState:UIControlStateNormal];
     [self.scanBtn setTitle:NSLocalizedString(@"Find Popcorn Time", nil) forState:UIControlStateNormal];
+
     self.scanBtn.titleLabel.font = [UIFont systemFontOfSize: 24];
+
     [self.scanBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -45, 0, 0)];
     [self.scanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, self.scanBtn.imageView.image.size.width)];
     
@@ -60,13 +64,16 @@
     [self.scanBtn addTarget:self action:@selector(handleScan) forControlEvents:UIControlEventTouchUpInside];
     
     self.scanBtn.frame = CGRectMake((self.view.frame.size.width/2)-160, self.desc.frame.origin.y + self.desc.frame.size.height + 70, 320, 80);
+
+
     
     [self.view addSubview:self.scanBtn];
     
     //
     
+
     self.divider = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, self.scanBtn.frame.origin.y + self.scanBtn.frame.size.height + 40, 260, 50)];
-    
+
     [self.divider setTextColor:UIColorFromRGB(kDefaultColor)];
     self.divider.textAlignment = NSTextAlignmentCenter;
     [self.divider setFont:[UIFont systemFontOfSize:12]];
@@ -89,6 +96,20 @@
     
     //
     self.footnote = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, self.connectBtn.frame.origin.y + self.connectBtn.frame.size.height + 40, 260, 18)];
+
+    [self.connectBtn setTitle:NSLocalizedString(@"Connect to IP address*", nil) forState:UIControlStateNormal];
+    
+    self.connectBtn.layer.cornerRadius = 5;
+    
+    [self.connectBtn addTarget:self action:@selector(handleInput) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    [self.view addSubview:self.connectBtn];
+    
+    //
+    self.footnote = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, self.connectBtn.frame.origin.y + self.connectBtn.frame.size.height + 10, 260, 18)];
+
     
     [self.footnote setTextColor:UIColorFromRGB(kDefaultColor)];
     self.footnote.textAlignment = NSTextAlignmentCenter;
@@ -100,8 +121,9 @@
     
     //
     
+
     self.notice = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, self.connectBtn.frame.origin.y + self.connectBtn.frame.size.height + 110, 260, 50)];
-    
+
     [self.notice setTextColor:UIColorFromRGB(kSecondaryColor)];
     self.notice.textAlignment = NSTextAlignmentLeft;
     self.notice.lineBreakMode = NSLineBreakByWordWrapping;
@@ -184,7 +206,7 @@
                  
                  [hud hide:YES];
                  
-                 
+
                  POPDevice *working = [POPDevice deviceWithAddress:address];
                  [working save];
                  
@@ -192,8 +214,7 @@
                  
                  [self.navigationController pushViewController:controls animated:YES];
                  
-             
-             
+
              } failure:^(NSError *error){
                  
                  [hud hide:YES];
@@ -277,12 +298,14 @@
          
          [self.navigationController pushViewController:controls animated:YES];
          
+
          
          NSLog(@"PopcornTime instance found at: %@", device.address);
          
      } failure:^(NSError *error){
          //NSLog(@"error: %@", error.description);
          NSLog(@"No instance running on: %@", device.address);
+
      }
     ];
     
@@ -317,7 +340,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+
     //[self checkExisting];
+
 }
 
 - (void)checkExisting
