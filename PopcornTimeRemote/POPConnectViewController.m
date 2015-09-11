@@ -17,6 +17,11 @@
 
 @implementation POPConnectViewController
 
+
+@synthesize volumeStepper, controlPad;
+
+
+
 - (id)initWithHost:(NSString *)host
               port:(int)port
               user:(NSString *)user
@@ -52,14 +57,41 @@
     //
     
 
-    self.control = [[POPControlView alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-150, (self.view.frame.size.height/4), 300, 300)];
-
-
-
-    self.control.delegate = self;
-    [self.view addSubview:self.control];
     
-    //
+    controlPad = [[DFSRemoteControlView alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-200, (self.view.frame.size.height/5), 400, 400)];
+    controlPad.delegate = self;
+    [self.view addSubview: controlPad];
+    
+    
+    
+
+
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStylePlain target: self action: @selector(back)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    
+    [self setupPreviousInterfaceItems];
+    
+    [self setupVolumeStepper];
+}
+
+
+
+
+- (void)back {
+    
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
+
+
+
+
+
+
+
+- (void)setupPreviousInterfaceItems {
     
     self.typeSwitch = [[POPTypeSwitchView alloc] initWithFrameAndTitles:CGRectMake(0, 0, self.view.frame.size.width, 44) titles:@[NSLocalizedString(@"Movies", nil), NSLocalizedString(@"TV Series", nil)]];
     self.typeSwitch.delegate = self;
@@ -105,14 +137,14 @@
     
     //
     
-    self.category = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(20, 60, 140, 30) title:@"Genre" filter:@"All"];
+    self.category = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(40, 60, 140, 30) title:@"Genre" filter:@"All"];
     self.category.delegate = self;
     
     [self.view addSubview:self.category];
     
     //
     
-    self.sort = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(160, 60, 140, 30) title:@"Sort by" filter:@"Popularity"];
+    self.sort = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(230, 60, 140, 30) title:@"Sort by" filter:@"Popularity"];
     self.sort.delegate = self;
     
     [self.view addSubview:self.sort];
@@ -132,10 +164,10 @@
     //
     
     self.ordering = @[@"Popularity", @"Date", @"Year", @"Rating"];
-
+    
     self.ordering_tv = @[@"Popularity", @"Updated", @"Year", @"Name", @"Rating"];
-
-
+    
+    
     
     self.sortList = [[POPFilterListView alloc] initWithFrameAndFilters:CGRectMake(0, 0, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height) filters:self.ordering];
     self.sortList.delegate = self;
@@ -157,19 +189,69 @@
     
     [self setTitle:NSLocalizedString(@"Popcorn Time Remote", nil)];
 
-    
-    
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: self action: @selector(back)];
-    
-    self.navigationItem.leftBarButtonItem = backButton;
 }
 
-
-
-- (void)back {
+- (void)setupVolumeStepper {
     
-    [self.navigationController popViewControllerAnimated: YES];
+    // customize uicontrols exposed via property
+    self.volumeStepper = [[PKYStepper alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2) - 150, self.view.frame.size.height-150, 300, 50)];
+    self.volumeStepper.maximum = 1.0f;
+    self.volumeStepper.minimum = 0.0f;
+    self.volumeStepper.hidesDecrementWhenMinimum = YES;
+    self.volumeStepper.hidesIncrementWhenMaximum = YES;
+    self.volumeStepper.buttonWidth = 60.0f;
+    self.volumeStepper.value = self.volume;
+    [self.volumeStepper setBorderWidth:0.0f];
+    self.volumeStepper.stepInterval = 0.1f;
+    self.volumeStepper.countLabel.layer.borderWidth = 0.0f;
+    [self.volumeStepper setButtonFont: [UIFont systemFontOfSize: 22]];
+    [self.volumeStepper setLabelFont: [UIFont systemFontOfSize: 22]];
+    self.volumeStepper.countLabel.textColor = [UIColor lightGrayColor];
+    
+    UIColor *buttonBackgroundColor = [UIColor colorWithRed:0.92 green:0.37 blue:0.0 alpha:1.0];
+    
+    self.volumeStepper.incrementButton.layer.borderWidth = 1.0f;
+    self.volumeStepper.incrementButton.layer.borderColor = buttonBackgroundColor.CGColor;
+    [self.volumeStepper.incrementButton setBackgroundColor:buttonBackgroundColor];
+    self.volumeStepper.incrementButton.layer.cornerRadius = 5.0f;
+    
+    self.volumeStepper.decrementButton.layer.borderWidth = 1.0f;
+    self.volumeStepper.decrementButton.layer.borderColor = buttonBackgroundColor.CGColor;
+    [self.volumeStepper.decrementButton setBackgroundColor:buttonBackgroundColor];
+    self.volumeStepper.decrementButton.layer.cornerRadius = 5.0f;
+
+    [self.volumeStepper setButtonTextColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.volumeStepper.valueChangedCallback = ^(PKYStepper *stepper, float count) {
+
+        int value = roundf(count*10);
+        
+        stepper.countLabel.text = [NSString stringWithFormat:@" %i", value];
+    };
+    
+    
+    // Volume Increased
+    self.volumeStepper.incrementCallback = ^(PKYStepper *stepper, float count) {
+        
+        [weakSelf selectedCommand: POPControlViewIncreaseVolumeCommand];
+    };
+    
+    
+    // Volume Decreased
+    self.volumeStepper.decrementCallback = ^(PKYStepper *stepper, float count) {
+        
+        [weakSelf selectedCommand: POPControlViewDecreaseVolumeCommand];
+    };
+    
+    
+    
+    [self.volumeStepper setup];
+    [self.view addSubview:self.volumeStepper];
+
+    
 }
 
 
@@ -261,6 +343,14 @@
         [self.sortList show];
         
     }
+}
+
+
+- (void)executeCommand:(NSNumber *)command {
+    
+    NSLog(@"Command: %@", command);
+    
+    [self selectedCommand: (POPControlViewCommand)command.integerValue];
 }
 
 - (void)selectedCommand:(POPControlViewCommand)command

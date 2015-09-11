@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BB3EEE6AFDF9E8A6D59835A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6CC22062D2E45615037D53F /* libPods.a */; };
+		5C466B551BA285F90068F37B /* DFSRemoteControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466B541BA285F90068F37B /* DFSRemoteControlView.m */; };
+		5C466B5B1BA288130068F37B /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B571BA288130068F37B /* down.png */; };
+		5C466B5C1BA288130068F37B /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B581BA288130068F37B /* left.png */; };
+		5C466B5D1BA288130068F37B /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B591BA288130068F37B /* right.png */; };
+		5C466B5E1BA288130068F37B /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B5A1BA288130068F37B /* up.png */; };
+		5C466B601BA292DA0068F37B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C466B5F1BA292DA0068F37B /* AVFoundation.framework */; };
+		5C466B621BA296760068F37B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C466B611BA296760068F37B /* MediaPlayer.framework */; };
+		5C466B641BA29B870068F37B /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B631BA29B870068F37B /* mute.png */; };
 		743A6D3319D2BCCE007FB451 /* POPScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 743A6D3219D2BCCE007FB451 /* POPScanViewController.m */; };
 		743A6D3C19D2BD52007FB451 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 743A6D3519D2BD52007FB451 /* Device.m */; };
 		743A6D3D19D2BD52007FB451 /* ScanLAN.m in Sources */ = {isa = PBXBuildFile; fileRef = 743A6D3719D2BD52007FB451 /* ScanLAN.m */; };
@@ -31,7 +40,6 @@
 		74CFD53819D1BE9A007364DF /* POPTypeSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CFD53719D1BE9A007364DF /* POPTypeSwitchView.m */; };
 		74CFD53B19D1C8B9007364DF /* POPFilterSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CFD53A19D1C8B9007364DF /* POPFilterSelectView.m */; };
 		74CFD53E19D1FC42007364DF /* POPFilterListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CFD53D19D1FC42007364DF /* POPFilterListView.m */; };
-		84953DF06A70423D8549ECA7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D11060A47464605A75A72CC /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +54,15 @@
 
 /* Begin PBXFileReference section */
 		17B2A005D1A66892842C5F23 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5C466B531BA285F90068F37B /* DFSRemoteControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DFSRemoteControlView.h; path = "Custom Objects/DFSRemoteControlView/DFSRemoteControlView.h"; sourceTree = "<group>"; };
+		5C466B541BA285F90068F37B /* DFSRemoteControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DFSRemoteControlView.m; path = "Custom Objects/DFSRemoteControlView/DFSRemoteControlView.m"; sourceTree = "<group>"; };
+		5C466B571BA288130068F37B /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = down.png; path = images/down.png; sourceTree = "<group>"; };
+		5C466B581BA288130068F37B /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left.png; path = images/left.png; sourceTree = "<group>"; };
+		5C466B591BA288130068F37B /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = images/right.png; sourceTree = "<group>"; };
+		5C466B5A1BA288130068F37B /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = up.png; path = images/up.png; sourceTree = "<group>"; };
+		5C466B5F1BA292DA0068F37B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5C466B611BA296760068F37B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5C466B631BA29B870068F37B /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mute.png; path = images/mute.png; sourceTree = "<group>"; };
 		743A6D3119D2BCCE007FB451 /* POPScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPScanViewController.h; sourceTree = "<group>"; };
 		743A6D3219D2BCCE007FB451 /* POPScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPScanViewController.m; sourceTree = "<group>"; };
 		743A6D3419D2BD52007FB451 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
@@ -87,8 +104,8 @@
 		74CFD53A19D1C8B9007364DF /* POPFilterSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPFilterSelectView.m; sourceTree = "<group>"; };
 		74CFD53C19D1FC42007364DF /* POPFilterListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPFilterListView.h; sourceTree = "<group>"; };
 		74CFD53D19D1FC42007364DF /* POPFilterListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POPFilterListView.m; sourceTree = "<group>"; };
-		8D11060A47464605A75A72CC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC83D098BD83ADE8029059DF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F6CC22062D2E45615037D53F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +113,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C466B621BA296760068F37B /* MediaPlayer.framework in Frameworks */,
+				5C466B601BA292DA0068F37B /* AVFoundation.framework in Frameworks */,
 				74CFD4FD19D0C640007364DF /* CoreGraphics.framework in Frameworks */,
 				74CFD4FF19D0C640007364DF /* UIKit.framework in Frameworks */,
 				74CFD4FB19D0C640007364DF /* Foundation.framework in Frameworks */,
-				84953DF06A70423D8549ECA7 /* libPods.a in Frameworks */,
+				2BB3EEE6AFDF9E8A6D59835A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +135,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C466B501BA285B20068F37B /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				5C466B511BA285B70068F37B /* DFSRemoteControlView */,
+			);
+			name = "Custom Objects";
+			sourceTree = "<group>";
+		};
+		5C466B511BA285B70068F37B /* DFSRemoteControlView */ = {
+			isa = PBXGroup;
+			children = (
+				5C466B531BA285F90068F37B /* DFSRemoteControlView.h */,
+				5C466B541BA285F90068F37B /* DFSRemoteControlView.m */,
+			);
+			name = DFSRemoteControlView;
+			sourceTree = "<group>";
+		};
+		5C466B561BA288070068F37B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				5C466B631BA29B870068F37B /* mute.png */,
+				5C466B571BA288130068F37B /* down.png */,
+				5C466B581BA288130068F37B /* left.png */,
+				5C466B591BA288130068F37B /* right.png */,
+				5C466B5A1BA288130068F37B /* up.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		743A6D4019D2C009007FB451 /* lanscan */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,11 +202,13 @@
 		74CFD4F919D0C640007364DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C466B611BA296760068F37B /* MediaPlayer.framework */,
+				5C466B5F1BA292DA0068F37B /* AVFoundation.framework */,
 				74CFD4FA19D0C640007364DF /* Foundation.framework */,
 				74CFD4FC19D0C640007364DF /* CoreGraphics.framework */,
 				74CFD4FE19D0C640007364DF /* UIKit.framework */,
 				74CFD51319D0C640007364DF /* XCTest.framework */,
-				8D11060A47464605A75A72CC /* libPods.a */,
+				F6CC22062D2E45615037D53F /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,6 +216,7 @@
 		74CFD50019D0C640007364DF /* PopcornTimeRemote */ = {
 			isa = PBXGroup;
 			children = (
+				5C466B501BA285B20068F37B /* Custom Objects */,
 				743A6D4019D2C009007FB451 /* lanscan */,
 				74CFD50919D0C640007364DF /* POPAppDelegate.h */,
 				74CFD50A19D0C640007364DF /* POPAppDelegate.m */,
@@ -195,6 +246,7 @@
 		74CFD50119D0C640007364DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5C466B561BA288070068F37B /* images */,
 				74CFD50219D0C640007364DF /* PopcornTimeRemote-Info.plist */,
 				74CFD50319D0C640007364DF /* InfoPlist.strings */,
 				74CFD50619D0C640007364DF /* main.m */,
@@ -277,7 +329,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = POP;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = skaggivara;
 				TargetAttributes = {
 					74CFD4F619D0C640007364DF = {
@@ -311,8 +363,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C466B5E1BA288130068F37B /* up.png in Resources */,
+				5C466B641BA29B870068F37B /* mute.png in Resources */,
+				5C466B5D1BA288130068F37B /* right.png in Resources */,
 				74CFD50519D0C640007364DF /* InfoPlist.strings in Resources */,
 				74CFD50D19D0C640007364DF /* Images.xcassets in Resources */,
+				5C466B5C1BA288130068F37B /* left.png in Resources */,
+				5C466B5B1BA288130068F37B /* down.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +431,7 @@
 				74CFD52E19D15898007364DF /* POPConnectViewController.m in Sources */,
 				74CFD53119D16944007364DF /* POPNetworking.m in Sources */,
 				74C5DD5A19D31FC5005691C2 /* POPDevice.m in Sources */,
+				5C466B551BA285F90068F37B /* DFSRemoteControlView.m in Sources */,
 				743A6D3D19D2BD52007FB451 /* ScanLAN.m in Sources */,
 				743A6D3319D2BCCE007FB451 /* POPScanViewController.m in Sources */,
 				74CFD50719D0C640007364DF /* main.m in Sources */,
@@ -437,6 +495,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -451,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -484,7 +543,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

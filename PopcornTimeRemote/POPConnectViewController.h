@@ -13,6 +13,8 @@
 #import "POPControlView.h"
 #import "POPFilterSelectView.h"
 #import "POPFilterListView.h"
+#import "DFSRemoteControlView.h"
+#import <PKYStepper/PKYStepper.h>
 
 
 typedef enum {
@@ -28,6 +30,7 @@ typedef enum {
 
 @property(strong) POPTypeSwitchView *typeSwitch;
 @property(strong) POPControlView *control;
+@property(strong, nonatomic) DFSRemoteControlView *controlPad;
 
 @property(strong) UIButton *playToggle;
 @property(strong) UIButton *tvSeriesPrev;
@@ -70,5 +73,16 @@ typedef enum {
 
 - (id)initWithHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password;
 - (void)updateViewStackWithDelay:(float)delay;
+
+
+- (void)executeCommand:(NSNumber *)command;
+
+
+
+
+
+@property (nonatomic, strong) PKYStepper *volumeStepper;
+
+
 
 @end

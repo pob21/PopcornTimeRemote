@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C7E1F5038A25008ACD9C034"
-               BuildableName = "libPods-AFJSONRPCClient.a"
-               BlueprintName = "Pods-AFJSONRPCClient"
+               BlueprintIdentifier = "8178D735ACE1594B3DDECBE4"
+               BuildableName = "libPods-PKYStepper.a"
+               BlueprintName = "Pods-PKYStepper"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

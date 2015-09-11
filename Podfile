@@ -1,5 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+platform :ios, '8.0'
 pod 'AFNetworking', '~> 2.0'
 pod 'MBProgressHUD', '~> 0.8'
 pod 'AFJSONRPCClient', '~> 2.1.1'
+pod 'PKYStepper', '0.0.1'

@@ -23,15 +23,18 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - MBProgressHUD (0.9.1)
+  - PKYStepper (0.0.1)
 
 DEPENDENCIES:
   - AFJSONRPCClient (~> 2.1.1)
   - AFNetworking (~> 2.0)
   - MBProgressHUD (~> 0.8)
+  - PKYStepper (= 0.0.1)
 
 SPEC CHECKSUMS:
   AFJSONRPCClient: 333bada91e6e45398446b8bd84e238e6f2389b1b
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
 
 COCOAPODS: 0.37.2
