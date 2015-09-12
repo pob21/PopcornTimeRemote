@@ -73,8 +73,8 @@
     [self.view addSubview: controlPad];
     
 
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStylePlain target: self action: @selector(back)];
-    self.navigationItem.leftBarButtonItem = backButton;
+   // UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStylePlain target: self action: @selector(back)];
+   // self.navigationItem.leftBarButtonItem = backButton;
     
     
     [self setupPreviousInterfaceItems];
@@ -284,7 +284,7 @@
     
     [self.listener connect:self.host port:self.port user:kPopcornUser password:kPopcornPass];
     
-    [self.navigationItem setHidesBackButton:YES];
+    //[self.navigationItem setHidesBackButton:YES];
     
 }
 
@@ -417,6 +417,13 @@
             [self sendCommand:@"enter" params:nil];
             
         break;
+            
+        case POPControlViewPauseCommand:
+            
+            [self sendCommand:@"toggleplaying" params:nil];
+            
+            break;
+            
         case POPControlViewUpCommand:
             
             [self sendCommand:@"up" params:nil];
@@ -467,8 +474,8 @@
             if (self.volume > 1.0) {
                 self.volume = 1.0;
             }
-            
-            [self sendCommand:@"setvolume" params:@[@(self.volume)]];
+            NSLog(@"Volume: %f", self.volume);
+            [self sendCommand:@"volume" params:@[@(self.volume)]];
 
         break;
             
@@ -479,7 +486,7 @@
                 self.volume = 0.0;
             }
             
-            [self sendCommand:@"setvolume" params:@[@(self.volume)]];
+            [self sendCommand:@"volume" params:@[@(self.volume)]];
 
         break;
     }
@@ -662,11 +669,13 @@
 - (void)enableVideoControls:(BOOL)enable
 {
     if (enable) {
-        [self playToggle].alpha = 1;
-        [self.control enableVideoControls:YES];
+        [controlPad enablePlayerMode: YES];
+        //[self playToggle].alpha = 1;
+        //[self.control enableVideoControls:YES];
     } else {
-        [self playToggle].alpha = 0;
-        [self.control enableVideoControls:NO];
+       // [self playToggle].alpha = 0;
+        //[self.control enableVideoControls:NO];
+        [controlPad enablePlayerMode: NO];
     }
 }
 

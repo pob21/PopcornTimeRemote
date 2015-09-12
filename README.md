@@ -12,7 +12,7 @@ This is an Open Source remote control app for Popcorn Time 3.3+ found at http://
 
 Clone the app and install the required pods:
 
-    git clone https://github.com/Skaggivara/PopcornTimeRemote
+    git clone https://github.com/pob21/PopcornTimeRemote.git
     cd PopcornTimeRemote
     pod install
     open PopcornTimeRemote.xcworkspace

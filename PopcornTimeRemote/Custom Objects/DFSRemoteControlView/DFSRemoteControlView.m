@@ -10,7 +10,7 @@
 
 @implementation DFSRemoteControlView
 
-@synthesize up, down, left, right, delegate, back, mute;
+@synthesize up, down, left, right, delegate, back, mute, playbackMode;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     
@@ -20,21 +20,25 @@
         
         
         up = [[UIButton alloc] initWithFrame: CGRectMake((self.frame.size.width*.5)-20, 5, 40, 40)];
+        up.alpha = 0.4f;
         [up setBackgroundImage: [UIImage imageNamed: @"up"] forState: UIControlStateNormal];
         [self addSubview: up];
 
         
         down = [[UIButton alloc] initWithFrame: CGRectMake((self.frame.size.width*.5)-20, self.frame.size.height-45, 40, 40)];
+        down.alpha = 0.4f;
         [down setBackgroundImage: [UIImage imageNamed: @"down"] forState: UIControlStateNormal];
         [self addSubview: down];
 
         
         left = [[UIButton alloc] initWithFrame: CGRectMake(5, (self.frame.size.height*.5)-45, 40, 40)];
+        left.alpha = 0.4f;
         [left setBackgroundImage: [UIImage imageNamed: @"left"] forState: UIControlStateNormal];
         [self addSubview: left];
 
         
         right = [[UIButton alloc] initWithFrame: CGRectMake((self.frame.size.width)-45, (self.frame.size.height*.5)-45, 40, 40)];
+        right.alpha = 0.4f;
         [right setBackgroundImage: [UIImage imageNamed: @"right"] forState: UIControlStateNormal];
         [self addSubview: right];
 
@@ -43,6 +47,7 @@
         UILabel *description = [[UILabel alloc] initWithFrame: CGRectMake((self.frame.size.width*.5)-100, (self.frame.size.height*.5)-100, 200, 200)];
         description.backgroundColor = [UIColor clearColor];
         description.numberOfLines = 0;
+        description.alpha = 0.5f;
         description.textColor = [UIColor lightTextColor];
         description.textAlignment = NSTextAlignmentCenter;
         description.text = @"Swipe to move\nTap to select";
@@ -128,143 +133,66 @@
 
 - (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
     
-    NSLog(@"Swipe Up");
-    
-    if (self.delegate) {
-        
-        if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
-            
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewUpCommand]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
+    [self executeCommand: POPControlViewUpCommand];
 }
-
-
-
-
 
 
 - (void)handleSwipeDownFrom:(UIGestureRecognizer*)recognizer {
     
-    NSLog(@"Swipe Down");
-    
-    if (self.delegate) {
-        
-        if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
-            
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewDownCommand]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
-
-    
+    [self executeCommand: POPControlViewDownCommand];
 }
 
 
 - (void)handleSwipeLeftFrom:(UIGestureRecognizer*)recognizer {
     
-    NSLog(@"Swipe Left");
-    
-    
-    if (self.delegate) {
-        
-        if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
-            
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewLeftCommand]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
-
-    
+    [self executeCommand: POPControlViewLeftCommand];
 }
 
 
 - (void)handleSwipeRightFrom:(UIGestureRecognizer*)recognizer {
-    
-    NSLog(@"Swipe Right");
-    
-    if (self.delegate) {
-        
-        if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
-            
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewRightCommand]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
 
-    
+    [self executeCommand: POPControlViewRightCommand];
 }
 
 
 - (void)tapFrom:(UIGestureRecognizer*)recognizer {
-    
-    NSLog(@"Tap");
-    
-    if (self.delegate) {
-        
-        if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
-            
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewEnterCommand]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
 
+    [self executeCommand: playbackMode ? POPControlViewPauseCommand : POPControlViewEnterCommand];
 }
-
-
 
 
 - (void)back:(id)sender {
     
-    if (self.delegate) {
-        
-        if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
-            
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewBackCommand]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
-
+    [self executeCommand: POPControlViewBackCommand];
 }
-
-
 
 - (void)mute:(id)sender {
     
+    [self executeCommand: POPControlViewMuteCommand];
+}
+
+
+
+- (void)executeCommand:(POPControlViewCommand)command {
+    
+    
     if (self.delegate) {
         
         if ([self.delegate respondsToSelector:@selector(executeCommand:)]) {
             
-            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: POPControlViewMuteCommand]];
+            [self.delegate performSelector: @selector(executeCommand:) withObject:[NSNumber numberWithInteger: command]];
             
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
-        }
-    }
-    
-}
-
-
-- (void)handleCommand:(id)sender
-{
-    UIButton *btn = (UIButton *)sender;
-    NSInteger tag = btn.tag;
-    
-    if (self.delegate) {
-       
-        if ([self.delegate respondsToSelector:@selector(selectedCommand:)]) {
-           
-            [self.delegate performSelector: @selector(selectedCommand:) withObject:[NSNumber numberWithInteger: tag]];
-            
-            //[self.delegate selectedCommand:(POPControlViewCommand) tag];
         }
     }
 }
+
+
+
+-(void)enablePlayerMode:(BOOL)playerMode {
+    
+    playbackMode = playerMode;
+    
+}
+
 
 @end

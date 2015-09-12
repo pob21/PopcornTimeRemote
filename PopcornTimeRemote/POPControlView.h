@@ -10,6 +10,7 @@
 
 typedef enum{
     POPControlViewEnterCommand,
+    POPControlViewPauseCommand,
     POPControlViewUpCommand,
     POPControlViewLeftCommand,
     POPControlViewRightCommand,

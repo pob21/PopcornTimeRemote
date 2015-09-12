@@ -13,7 +13,7 @@
 
 
 
-
+-(void)enablePlayerMode:(BOOL)playerMode;
 
 
 @property (nonatomic, strong) id delegate;
@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIButton *right;
 @property (nonatomic, strong) UIButton *back;
 @property (nonatomic, strong) UIButton *mute;
+@property (assign) BOOL playbackMode;
 
 
 @end
