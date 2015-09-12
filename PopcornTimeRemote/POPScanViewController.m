@@ -195,7 +195,7 @@
             
             [hud show:YES];
             
-            // TODO: check if we have other user/pass saved
+               // TODO: check if we have other user/pass saved
             [POPNetworking validatePopcorn:address
                                       port:kPopcornPort
                                       user:kPopcornUser
@@ -230,7 +230,7 @@
 {
     if (![[AFNetworkReachabilityManager sharedManager] isReachableViaWiFi]) {
         //update text
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem Connecting", nil) message:[NSString stringWithFormat:NSLocalizedString(@"Please connect to the same network (WIFI) as your computer running popcorn time.", nil)] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Problem Connecting", nil) message:[NSString stringWithFormat:NSLocalizedString(@"Please connect to the same network (WIFI) as the computer running popcorn time.", nil)] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
     } else {
         
         if (!self.hud) {
@@ -285,6 +285,7 @@
                           password:kPopcornPass
                            success:^(id responseObject)
      {
+
          [self.scanner stopScan];
          
          if (self.hud) {

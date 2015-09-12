@@ -46,29 +46,31 @@
         description.textColor = [UIColor lightTextColor];
         description.textAlignment = NSTextAlignmentCenter;
         description.text = @"Swipe to move\nTap to select";
-        description.font = [UIFont systemFontOfSize: 26.0f];
+        description.font = [UIFont systemFontOfSize: 22.0f];
         [self addSubview: description];
         
         
         
-        back = [[UIButton alloc] initWithFrame: CGRectMake(45, (self.frame.size.height-70), 65, 65)];
+        back = [[UIButton alloc] initWithFrame: CGRectMake(45, (self.frame.size.height-80), 65, 65)];
+        back.layer.borderWidth = 1;
+        back.layer.borderColor = [UIColor colorWithRed:0.22 green:0.58 blue:0.84 alpha:1].CGColor;
         back.layer.cornerRadius = back.frame.size.width/2;
         [back setTitle:@"Back" forState: UIControlStateNormal];
         [back addTarget: self action: @selector(back:) forControlEvents: UIControlEventTouchUpInside];
-        [back setBackgroundColor: [UIColor colorWithRed:0.22 green:0.58 blue:0.84 alpha:1]];
+        [back setBackgroundColor: [UIColor clearColor]];
         [self addSubview:back];
 
         
         
-        mute = [[UIButton alloc] initWithFrame: CGRectMake((self.frame.size.width - 110), (self.frame.size.height-70), 65, 65)];
+        mute = [[UIButton alloc] initWithFrame: CGRectMake((self.frame.size.width - 110), (self.frame.size.height-80), 65, 65)];
+        mute.layer.borderWidth = 1;
+        mute.layer.borderColor = [UIColor colorWithRed:0.22 green:0.58 blue:0.84 alpha:1].CGColor;
         mute.layer.cornerRadius = mute.frame.size.width/2;
         [mute setImage: [UIImage imageNamed: @"mute"] forState: UIControlStateNormal];
         [mute addTarget: self action: @selector(mute:) forControlEvents: UIControlEventTouchUpInside];
-        [mute setBackgroundColor: [UIColor colorWithRed:0.22 green:0.58 blue:0.84 alpha:1]];
+        [mute setBackgroundColor: [UIColor clearColor]];
         [self addSubview:mute];
 
-        
-        
         
         UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpFrom:)];
         swipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
@@ -94,6 +96,22 @@
         tapGestureRecogizner.numberOfTapsRequired = 1;
         [self addGestureRecognizer: tapGestureRecogizner];
         
+        
+        
+        
+        
+        UIView *topBorder = [[UIView alloc] initWithFrame: CGRectMake(10, 0, self.frame.size.width-20, 1)];
+        topBorder.backgroundColor = [UIColor lightGrayColor];
+        topBorder.alpha = .1f;
+        [self addSubview: topBorder];
+
+        
+        
+        UIView *bottomBorder = [[UIView alloc] initWithFrame: CGRectMake(10, self.frame.size.height, self.frame.size.width-20, 1)];
+        bottomBorder.backgroundColor = [UIColor lightGrayColor];
+        bottomBorder.alpha = .1f;
+        [self addSubview: bottomBorder];
+        
     }
     
     return self;
@@ -105,6 +123,8 @@
 
 #pragma mark - Actions
 
+
+// TODO: Consolidate all these commands
 
 - (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
     
@@ -119,9 +139,11 @@
             //[self.delegate selectedCommand:(POPControlViewCommand) tag];
         }
     }
-
-    
 }
+
+
+
+
 
 
 - (void)handleSwipeDownFrom:(UIGestureRecognizer*)recognizer {

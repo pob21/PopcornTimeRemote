@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "74CFD4F619D0C640007364DF"
-               BuildableName = "PopcornTimeRemote.app"
+               BuildableName = "Remote.app"
                BlueprintName = "PopcornTimeRemote"
                ReferencedContainer = "container:PopcornTimeRemote.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "74CFD4F619D0C640007364DF"
-            BuildableName = "PopcornTimeRemote.app"
+            BuildableName = "Remote.app"
             BlueprintName = "PopcornTimeRemote"
             ReferencedContainer = "container:PopcornTimeRemote.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "74CFD4F619D0C640007364DF"
-            BuildableName = "PopcornTimeRemote.app"
+            BuildableName = "Remote.app"
             BlueprintName = "PopcornTimeRemote"
             ReferencedContainer = "container:PopcornTimeRemote.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "74CFD4F619D0C640007364DF"
-            BuildableName = "PopcornTimeRemote.app"
+            BuildableName = "Remote.app"
             BlueprintName = "PopcornTimeRemote"
             ReferencedContainer = "container:PopcornTimeRemote.xcodeproj">
          </BuildableReference>

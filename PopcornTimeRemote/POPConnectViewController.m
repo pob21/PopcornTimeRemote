@@ -54,19 +54,25 @@
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.view setBackgroundColor:UIColorFromRGB(kBackgroundColor)];
     
-    //
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame: [UIScreen mainScreen].bounds];
+    backgroundImageView.image = [UIImage imageNamed: @"background.jpg"];
+    backgroundImageView.alpha = 0.7f;
+    [self.view addSubview: backgroundImageView];
     
-
     
-    controlPad = [[DFSRemoteControlView alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-200, (self.view.frame.size.height/5), 400, 400)];
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurEffectView.frame = self.view.bounds;
+    blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [backgroundImageView addSubview:blurEffectView];
+    
+    
+    controlPad = [[DFSRemoteControlView alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-200, (self.view.frame.size.height/4), 400, 400)];
     controlPad.delegate = self;
     [self.view addSubview: controlPad];
     
-    
-    
 
-
-    
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStylePlain target: self action: @selector(back)];
     self.navigationItem.leftBarButtonItem = backButton;
     
@@ -86,14 +92,9 @@
 
 
 
-
-
-
-
-
 - (void)setupPreviousInterfaceItems {
     
-    self.typeSwitch = [[POPTypeSwitchView alloc] initWithFrameAndTitles:CGRectMake(0, 0, self.view.frame.size.width, 44) titles:@[NSLocalizedString(@"Movies", nil), NSLocalizedString(@"TV Series", nil)]];
+    self.typeSwitch = [[POPTypeSwitchView alloc] initWithFrameAndTitles:CGRectMake(0, 60, self.view.frame.size.width, 44) titles:@[NSLocalizedString(@"Movies", nil), NSLocalizedString(@"TV Series", nil)]];
     self.typeSwitch.delegate = self;
     [self.view addSubview:self.typeSwitch];
     
@@ -137,14 +138,14 @@
     
     //
     
-    self.category = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(40, 60, 140, 30) title:@"Genre" filter:@"All"];
+    self.category = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(40, 120, 140, 30) title:@"Genre" filter:@"All"];
     self.category.delegate = self;
     
     [self.view addSubview:self.category];
     
     //
     
-    self.sort = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(230, 60, 140, 30) title:@"Sort by" filter:@"Popularity"];
+    self.sort = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(230, 120, 140, 30) title:@"Sort by" filter:@"Popularity"];
     self.sort.delegate = self;
     
     [self.view addSubview:self.sort];
@@ -194,12 +195,13 @@
 - (void)setupVolumeStepper {
     
     // customize uicontrols exposed via property
-    self.volumeStepper = [[PKYStepper alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2) - 150, self.view.frame.size.height-150, 300, 50)];
+    self.volumeStepper = [[PKYStepper alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2) - 150, self.view.frame.size.height-100, 300, 50)];
     self.volumeStepper.maximum = 1.0f;
     self.volumeStepper.minimum = 0.0f;
     self.volumeStepper.hidesDecrementWhenMinimum = YES;
     self.volumeStepper.hidesIncrementWhenMaximum = YES;
     self.volumeStepper.buttonWidth = 60.0f;
+
     self.volumeStepper.value = self.volume;
     [self.volumeStepper setBorderWidth:0.0f];
     self.volumeStepper.stepInterval = 0.1f;
@@ -208,7 +210,7 @@
     [self.volumeStepper setLabelFont: [UIFont systemFontOfSize: 22]];
     self.volumeStepper.countLabel.textColor = [UIColor lightGrayColor];
     
-    UIColor *buttonBackgroundColor = [UIColor colorWithRed:0.92 green:0.37 blue:0.0 alpha:1.0];
+    UIColor *buttonBackgroundColor = [UIColor clearColor];
     
     self.volumeStepper.incrementButton.layer.borderWidth = 1.0f;
     self.volumeStepper.incrementButton.layer.borderColor = buttonBackgroundColor.CGColor;
@@ -252,6 +254,59 @@
     [self.view addSubview:self.volumeStepper];
 
     
+}
+
+
+#pragma mark - View Lifecycle
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    //
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    
+    //
+    
+    UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(handleSearch)];
+    self.navigationItem.rightBarButtonItem = searchBtn;
+    
+    //
+    
+    self.listener = [[POPNetworking alloc] init];
+    
+    [self.listener connect:self.host port:self.port user:kPopcornUser password:kPopcornPass];
+    
+    [self.navigationItem setHidesBackButton:YES];
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.searchBar) {
+        [self.searchBar removeFromSuperview];
+        
+        [self.viewStackTimer invalidate];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self initializeController];
 }
 
 
@@ -700,19 +755,7 @@
     }];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    if (self.searchBar) {
-        [self.searchBar removeFromSuperview];
-        
-        [self.viewStackTimer invalidate];
-    }
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self initializeController];
-}
 
 - (void)updatePlayerView
 {
@@ -795,35 +838,6 @@
     }
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    //
-    
-    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(kDefaultColor)];
-    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(kBackgroundColor);
-    self.navigationController.navigationBar.translucent = NO;
-    
-    //
-    
-    UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(handleSearch)];
-    self.navigationItem.rightBarButtonItem = searchBtn;
-    
-    //
-    
-    self.listener = [[POPNetworking alloc] init];
-    
-    [self.listener connect:self.host port:self.port user:kPopcornUser password:kPopcornPass];
-    
-    [self.navigationItem setHidesBackButton:YES];
-    
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

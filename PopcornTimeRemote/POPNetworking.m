@@ -263,9 +263,12 @@
     [client.requestSerializer setTimeoutInterval:2];
     
 
-    [client invokeMethod:@"getviewstack"
+    [client invokeMethod:@"ping"
                       success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         
+         NSLog(@"StacK %@", responseObject);
+         
          if (success) {
              success(responseObject);
          }
