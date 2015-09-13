@@ -30,11 +30,10 @@
 
 - (void)loadView
 {
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.view setBackgroundColor:UIColorFromRGB(kBackgroundColor)];
+    [self  setupBackground];
     
 
-    self.desc = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, 60, 260, 50)];
+    self.desc = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, 80, 260, 50)];
 
     [self.desc setTextColor:UIColorFromRGB(kDefaultColor)];
     self.desc.textAlignment = NSTextAlignmentCenter;
@@ -76,7 +75,7 @@
 
     [self.divider setTextColor:UIColorFromRGB(kDefaultColor)];
     self.divider.textAlignment = NSTextAlignmentCenter;
-    [self.divider setFont:[UIFont systemFontOfSize:12]];
+    [self.divider setFont:[UIFont systemFontOfSize:24]];
   
     [self.divider setText:NSLocalizedString(@"OR", nil)];
     
@@ -122,7 +121,7 @@
     //
     
 
-    self.notice = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, self.connectBtn.frame.origin.y + self.connectBtn.frame.size.height + 110, 260, 50)];
+    self.notice = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2)-130, self.connectBtn.frame.origin.y + self.connectBtn.frame.size.height + 180, 260, 50)];
 
     [self.notice setTextColor:UIColorFromRGB(kSecondaryColor)];
     self.notice.textAlignment = NSTextAlignmentLeft;
@@ -141,6 +140,27 @@
     
     [self setTitle:NSLocalizedString(@"Popcorn Time Remote", nil)];
     
+}
+
+
+
+- (void)setupBackground {
+    
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.view setBackgroundColor:UIColorFromRGB(kBackgroundColor)];
+    
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame: [UIScreen mainScreen].bounds];
+    backgroundImageView.image = [UIImage imageNamed: @"background.jpg"];
+    backgroundImageView.alpha = 0.7f;
+    [self.view addSubview: backgroundImageView];
+    
+    
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurEffectView.frame = self.view.bounds;
+    blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [backgroundImageView addSubview:blurEffectView];
 }
 
 - (void)handleInput
@@ -391,10 +411,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationController.navigationBar setTintColor:UIColorFromRGB(kDefaultColor)];
-    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(kBackgroundColor);
-    self.navigationController.navigationBar.translucent = NO;
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     // check if we have saved address
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
