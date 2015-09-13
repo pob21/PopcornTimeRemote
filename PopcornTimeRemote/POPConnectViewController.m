@@ -65,7 +65,7 @@
     [self setupVolumeStepper];
     
     
-    NSArray *settingsArray = @[@"Options", @"Toggle Watched", @"Toggle Favorites", @"Toggle Quality", @"Toggle Fullscreen"];
+    NSArray *settingsArray = @[@"Options", @"Toggle Watched", @"Toggle Favorites", @"Toggle Quality", @"Toggle Fullscreen", @"Show Favorites"];
     
     self.settingsList = [[POPFilterListView alloc] initWithFrameAndFilters:CGRectMake(0, 0, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height) filters: settingsArray];
 
@@ -437,7 +437,15 @@
                 [self sendCommand:@"togglefullscreen" params: nil];
                 
                 break;
+
                 
+                // Toggle Fullscreen
+            case 5:
+                
+                [self sendCommand:@"showfavourites" params: nil];
+                
+                break;
+
             default:
                 break;
         }
