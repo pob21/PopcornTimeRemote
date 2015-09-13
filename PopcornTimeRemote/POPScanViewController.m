@@ -129,7 +129,7 @@
     self.notice.lineBreakMode = NSLineBreakByWordWrapping;
     self.notice.numberOfLines = 0;
     [self.notice setFont:[UIFont systemFontOfSize:14]];
-    
+    self.notice.textAlignment = NSTextAlignmentCenter;
     [self.notice setText:NSLocalizedString(@"This remote control works with Popcorn Time version 3.3 and above found at http://popcorntime.io", nil)];
     
     [self.notice sizeToFit];

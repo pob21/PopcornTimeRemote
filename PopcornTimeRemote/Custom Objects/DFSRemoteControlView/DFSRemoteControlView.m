@@ -74,6 +74,7 @@
         [mute setImage: [UIImage imageNamed: @"mute"] forState: UIControlStateNormal];
         [mute addTarget: self action: @selector(mute:) forControlEvents: UIControlEventTouchUpInside];
         [mute setBackgroundColor: [UIColor clearColor]];
+        [mute setEnabled: NO];
         [self addSubview:mute];
 
         
@@ -100,7 +101,6 @@
         UITapGestureRecognizer *tapGestureRecogizner = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(tapFrom:)];
         tapGestureRecogizner.numberOfTapsRequired = 1;
         [self addGestureRecognizer: tapGestureRecogizner];
-        
         
         
         
@@ -168,7 +168,8 @@
 
 - (void)mute:(id)sender {
     
-    [self executeCommand: POPControlViewMuteCommand];
+    if(mute.isEnabled)
+        [self executeCommand: POPControlViewMuteCommand];
 }
 
 
@@ -192,6 +193,7 @@
     
     playbackMode = playerMode;
     
+    mute.enabled = playerMode;
 }
 
 

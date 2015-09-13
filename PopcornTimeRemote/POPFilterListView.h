@@ -29,6 +29,7 @@
 - (id)initWithFrameAndFilters:(CGRect)frame filters:(NSArray *)filters;
 - (void)selectById:(int)identifier;
 - (void)show;
+- (void)showWithReset;
 - (void)hide;
 - (void)updateList:(NSArray *)list;
 

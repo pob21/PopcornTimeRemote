@@ -16,7 +16,6 @@
 #import "DFSRemoteControlView.h"
 #import <PKYStepper/PKYStepper.h>
 
-
 typedef enum {
     
     POPCornTimeRemoteTypeMovie,
@@ -39,9 +38,11 @@ typedef enum {
 
 @property(strong) POPFilterSelectView *category;
 @property(strong) POPFilterSelectView *sort;
+@property(strong) POPFilterSelectView *settings;
 
 @property(strong) POPFilterListView *categoryList;
 @property(strong) POPFilterListView *sortList;
+@property(strong) POPFilterListView *settingsList;
 
 @property(strong) NSArray *genres;
 @property(strong) NSArray *ordering;

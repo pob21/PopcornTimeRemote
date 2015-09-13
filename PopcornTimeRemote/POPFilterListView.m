@@ -188,7 +188,26 @@
     } completion:^(BOOL finished) {
         self.userInteractionEnabled = YES;
     }];
+    
+    
+    
+
 }
+
+- (void)showWithReset {
+    
+    self.userInteractionEnabled = YES;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        self.userInteractionEnabled = YES;
+    }];
+    
+    
+    [self selectById:0];
+}
+
 
 - (void)hide
 {

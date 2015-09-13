@@ -18,7 +18,7 @@
 @implementation POPConnectViewController
 
 
-@synthesize volumeStepper, controlPad;
+@synthesize volumeStepper, controlPad, settings, settingsList;
 
 
 
@@ -51,6 +51,49 @@
 
 - (void)loadView
 {
+
+    [self setupBackground];
+    
+    
+    controlPad = [[DFSRemoteControlView alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-200, (self.view.frame.size.height/4), 400, 400)];
+    controlPad.delegate = self;
+    [self.view addSubview: controlPad];
+    
+
+    [self setupPreviousInterfaceItems];
+    
+    [self setupVolumeStepper];
+    
+    
+    NSArray *settingsArray = @[@"Options", @"Toggle Watched", @"Toggle Favorites", @"Toggle Quality", @"Toggle Fullscreen"];
+    
+    self.settingsList = [[POPFilterListView alloc] initWithFrameAndFilters:CGRectMake(0, 0, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height) filters: settingsArray];
+
+    self.settingsList.delegate = self;
+    
+    [self.navigationController.view addSubview:self.settingsList];
+    
+    
+    UIButton *menuButton = [[UIButton alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-40, self.view.frame.size.height-120, 80, 80)];
+    [menuButton setTitle: @"Menu" forState: UIControlStateNormal];
+    menuButton.layer.cornerRadius = menuButton.frame.size.width/2;
+    [menuButton addTarget: self action: @selector(showMenu) forControlEvents: UIControlEventTouchUpInside];
+    menuButton.layer.borderWidth = 1.0f;
+    menuButton.layer.borderColor = [UIColor colorWithRed:1 green:0.22 blue:0.14 alpha:1].CGColor;
+    [self.view addSubview: menuButton];
+}
+
+
+
+
+- (void)showMenu {
+    
+    [settingsList showWithReset];
+}
+
+
+- (void)setupBackground {
+    
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.view setBackgroundColor:UIColorFromRGB(kBackgroundColor)];
     
@@ -66,30 +109,7 @@
     blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     [backgroundImageView addSubview:blurEffectView];
-    
-    
-    controlPad = [[DFSRemoteControlView alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-200, (self.view.frame.size.height/4), 400, 400)];
-    controlPad.delegate = self;
-    [self.view addSubview: controlPad];
-    
-
-   // UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStylePlain target: self action: @selector(back)];
-   // self.navigationItem.leftBarButtonItem = backButton;
-    
-    
-    [self setupPreviousInterfaceItems];
-    
-    [self setupVolumeStepper];
 }
-
-
-
-
-- (void)back {
-    
-    [self.navigationController popViewControllerAnimated: YES];
-}
-
 
 
 - (void)setupPreviousInterfaceItems {
@@ -118,7 +138,7 @@
     [self.tvSeriesPrev setTitle:NSLocalizedString(@"Prev season", nil) forState:UIControlStateNormal];
     self.tvSeriesPrev.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.tvSeriesPrev setTitleColor:UIColorFromRGB(kDefaultColor) forState:UIControlStateNormal];
-    self.tvSeriesPrev.frame = CGRectMake(20, 100, 140, 30);
+    self.tvSeriesPrev.frame = CGRectMake(20, 110, 140, 30);
     [self.tvSeriesPrev addTarget:self action:@selector(handleSeriesNav:) forControlEvents:UIControlEventTouchUpInside];
     [self.tvSeriesPrev setHidden:YES];
     
@@ -130,7 +150,7 @@
     [self.tvSeriesNext setTitle:NSLocalizedString(@"Next season", nil) forState:UIControlStateNormal];
     self.tvSeriesNext.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [self.tvSeriesNext setTitleColor:UIColorFromRGB(kDefaultColor) forState:UIControlStateNormal];
-    self.tvSeriesNext.frame = CGRectMake(160, 100, 140, 30);
+    self.tvSeriesNext.frame = CGRectMake(190, 110, 140, 30);
     [self.tvSeriesNext addTarget:self action:@selector(handleSeriesNav:) forControlEvents:UIControlEventTouchUpInside];
     [self.tvSeriesNext setHidden:YES];
     
@@ -138,14 +158,14 @@
     
     //
     
-    self.category = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(40, 120, 140, 30) title:@"Genre" filter:@"All"];
+    self.category = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(40, 150, 140, 30) title:@"Genre" filter:@"All"];
     self.category.delegate = self;
     
     [self.view addSubview:self.category];
     
     //
     
-    self.sort = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(230, 120, 140, 30) title:@"Sort by" filter:@"Popularity"];
+    self.sort = [[POPFilterSelectView alloc] initWithFrameAndTitle:CGRectMake(230, 150, 140, 30) title:@"Sort by" filter:@"Popularity"];
     self.sort.delegate = self;
     
     [self.view addSubview:self.sort];
@@ -196,7 +216,7 @@
     
     // customize uicontrols exposed via property
     self.volumeStepper = [[PKYStepper alloc] initWithFrame:CGRectMake((self.view.frame.size.width/2) - 150, self.view.frame.size.height-100, 300, 50)];
-    self.volumeStepper.maximum = 1.0f;
+    self.volumeStepper.maximum = 100.0f;
     self.volumeStepper.minimum = 0.0f;
     self.volumeStepper.hidesDecrementWhenMinimum = YES;
     self.volumeStepper.hidesIncrementWhenMaximum = YES;
@@ -231,7 +251,7 @@
 
         int value = roundf(count*10);
         
-        stepper.countLabel.text = [NSString stringWithFormat:@" %i", value];
+        //stepper.countLabel.text = [NSString stringWithFormat:@" %i", value];
     };
     
     
@@ -284,7 +304,6 @@
     
     [self.listener connect:self.host port:self.port user:kPopcornUser password:kPopcornPass];
     
-    //[self.navigationItem setHidesBackButton:YES];
     
 }
 
@@ -307,6 +326,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self initializeController];
+    
+    
+    
 }
 
 
@@ -377,6 +399,50 @@
             
             [self sendCommand:@"filtersorter" params:@[[self.ordering_tv objectAtIndex:index]]];
         }
+    }
+    
+    else if(filter == self.settingsList) {
+        
+        switch (index) {
+            
+            case 0:
+                
+                break;
+                
+                
+            // Mark as Watched
+            case 1:
+                
+                [self sendCommand:@"togglewatched" params: nil];
+                
+                break;
+                
+            // Add to favorites
+            case 2:
+                
+                [self sendCommand:@"togglefavourite" params: nil];
+                
+                break;
+                
+            // Toggle Quality
+            case 3:
+                
+                [self sendCommand:@"togglequality" params: nil];
+                
+                break;
+              
+            // Toggle Fullscreen
+            case 4:
+                
+                [self sendCommand:@"togglefullscreen" params: nil];
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
     }
 }
 
