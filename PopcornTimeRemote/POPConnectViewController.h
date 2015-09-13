@@ -77,7 +77,7 @@ typedef enum {
 
 
 - (void)executeCommand:(NSNumber *)command;
-
+- (void)checkIfVideoIsPlaying;
 
 
 

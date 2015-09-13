@@ -266,9 +266,6 @@
     [client invokeMethod:@"ping"
                       success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         
-         NSLog(@"StacK %@", responseObject);
-         
          if (success) {
              success(responseObject);
          }

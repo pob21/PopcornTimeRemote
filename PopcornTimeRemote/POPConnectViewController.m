@@ -314,6 +314,21 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear: animated];
+    
+    
+    
+    [self checkIfVideoIsPlaying];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkIfVideoIsPlaying)
+                                                 name: UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+}
+
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     if (self.searchBar) {
@@ -329,6 +344,36 @@
     
     
     
+}
+
+
+
+- (void)checkIfVideoIsPlaying {
+    
+    if (self.listener) {
+
+        
+        [self.listener send: @"getplaying" params: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            // If the server returns a video name, a video is playing, so set the navigation title to the video title, and enable controls
+            // we're not using "playing" because it returns false if the video is paused
+            
+            NSString *title = [responseObject objectForKey: @"title"];
+            
+            if(title) {
+                
+                [self enableVideoControls: YES];
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            UIAlertView *alertView =[[UIAlertView alloc] initWithTitle: @"Error" message: @"Error connecting to server" delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil, nil];
+            [alertView show];
+        }];
+        
+        [self enableVideoControls: NO];
+    }
+
 }
 
 
@@ -740,18 +785,44 @@
     }
 }
 
+
+
+
 - (void)enableVideoControls:(BOOL)enable
 {
     if (enable) {
+        
+        [self setVideoTitle];
         [controlPad enablePlayerMode: YES];
-        //[self playToggle].alpha = 1;
-        //[self.control enableVideoControls:YES];
+        
     } else {
-       // [self playToggle].alpha = 0;
-        //[self.control enableVideoControls:NO];
+      
+        self.navigationItem.title = @"Popcorn Time Remote";
         [controlPad enablePlayerMode: NO];
     }
 }
+
+
+
+
+-(void)setVideoTitle {
+    
+    
+    [self.listener send:@"getplaying" params:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.navigationItem.title = [responseObject objectForKey: @"title"];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error getting title");
+        
+        self.navigationItem.title = @"Popcorn Time Remote";
+        
+    }];
+    
+}
+
 
 - (void)handleViewStack:(NSArray *)stack
 {
@@ -884,10 +955,13 @@
 {
     [self.searchBar setHidden:YES];
     [self.searchBar resignFirstResponder];
+    self.navigationItem.hidesBackButton = NO;
 }
 
 - (void)showSearch
 {
+    self.navigationItem.hidesBackButton = YES;
+    
     if (!self.searchBar) {
         self.searchBar = [[UISearchBar alloc] initWithFrame:self.navigationController.navigationBar.bounds];
         self.searchBar.showsCancelButton = YES;

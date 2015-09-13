@@ -156,7 +156,7 @@
 
 
 - (void)tapFrom:(UIGestureRecognizer*)recognizer {
-
+    
     [self executeCommand: playbackMode ? POPControlViewPauseCommand : POPControlViewEnterCommand];
 }
 

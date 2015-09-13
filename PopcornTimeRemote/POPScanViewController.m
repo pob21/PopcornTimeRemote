@@ -138,7 +138,7 @@
     //
     
     
-    [self setTitle:NSLocalizedString(@"Popcorn Time Remote", nil)];
+    [self setTitle:NSLocalizedString(@"", nil)];
     
 }
 
