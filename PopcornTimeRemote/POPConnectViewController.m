@@ -53,6 +53,15 @@
 {
 
     [self setupBackground];
+
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
+    
+    // When a phone call is recieved, and the video is playing, we use this to pause the video
+    // (given that the app is in the foreground)
+    POPAppDelegate *appDelegate = (POPAppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.callingDelegate = self;
+    NSLog(@"Calling Delegate Set: %@", appDelegate.callingDelegate);
     
     
     controlPad = [[DFSRemoteControlView alloc] initWithFrame: CGRectMake((self.view.frame.size.width/2)-200, (self.view.frame.size.height/4), 400, 400)];
@@ -540,7 +549,7 @@
         case POPControlViewPauseCommand:
             
             [self sendCommand:@"toggleplaying" params:nil];
-            
+
             break;
             
         case POPControlViewUpCommand:
@@ -610,6 +619,35 @@
         break;
     }
 }
+
+
+
+// If the video is playing when someone calls, pause the video
+// (given the app is in the foreground)
+- (void)pauseVideo {
+    
+    if (self.listener) {
+        
+        [self.listener send: @"getplaying" params: nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            BOOL videoIsPlaying = [[responseObject objectForKey: @"playing"] boolValue];
+            
+            if(videoIsPlaying) {
+             
+                NSLog(@"The video was playing");
+                [self executeCommand: [NSNumber numberWithInteger: POPControlViewPauseCommand]];
+                
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+        }];
+    }
+}
+
+
+
+
 
 - (void)selectedType:(POPTypeSwitchView *)type
                index:(int)index

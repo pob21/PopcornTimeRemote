@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0DA6A021-95AF-49F2-B9BD-717CF4AA487D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PopcornTimeRemote</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E09358C3DC135DB8749A61FDA7CB5308575DF64F</key>
+		<string>https://github.com/pob21/PopcornTimeRemote.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PopcornTimeRemote.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E09358C3DC135DB8749A61FDA7CB5308575DF64F</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pob21/PopcornTimeRemote.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E09358C3DC135DB8749A61FDA7CB5308575DF64F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E09358C3DC135DB8749A61FDA7CB5308575DF64F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PopcornTimeRemote-master</string>
+		</dict>
+	</array>
+</dict>
+</plist>

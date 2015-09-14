@@ -12,6 +12,9 @@
 
 @implementation POPAppDelegate
 
+
+@synthesize callCenter, callingDelegate;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -28,6 +31,41 @@
     
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
+    
+    
+    
+    
+    self.callCenter = [[CTCallCenter alloc] init];
+    [self.callCenter setCallEventHandler:^(CTCall *call)
+     {
+         NSLog(@"Event handler called");
+         if ([call.callState isEqualToString: CTCallStateConnected])
+         {
+             NSLog(@"Connected");
+         }
+         else if ([call.callState isEqualToString: CTCallStateDialing])
+         {
+             NSLog(@"Dialing");
+         }
+         else if ([call.callState isEqualToString: CTCallStateDisconnected])
+         {
+             NSLog(@"Disconnected");
+             
+         } else if ([call.callState isEqualToString: CTCallStateIncoming])
+         {
+             NSLog(@"Incoming");
+             
+             NSLog(@"Calling Delegate: %@", callingDelegate);
+             
+             if(callingDelegate != nil)
+                 if([callingDelegate respondsToSelector: @selector(pauseVideo)])
+                     [callingDelegate performSelector: @selector(pauseVideo) withObject: nil];
+         }
+     }];
+
+    
+    
+    
     return YES;
 }
 

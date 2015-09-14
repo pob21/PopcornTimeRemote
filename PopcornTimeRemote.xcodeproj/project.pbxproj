@@ -16,6 +16,7 @@
 		5C466B621BA296760068F37B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C466B611BA296760068F37B /* MediaPlayer.framework */; };
 		5C466B641BA29B870068F37B /* mute.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B631BA29B870068F37B /* mute.png */; };
 		5C466B681BA2A6DA0068F37B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C466B671BA2A6DA0068F37B /* Images.xcassets */; };
+		5C9A1DDE1BA63D8800F0D4C8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9A1DDD1BA63D8800F0D4C8 /* CoreTelephony.framework */; };
 		5CC86E681BA4D0C900AC75F1 /* close-search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC86E611BA4D0C900AC75F1 /* close-search.png */; };
 		5CC86E691BA4D0C900AC75F1 /* close-search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC86E621BA4D0C900AC75F1 /* close-search@2x.png */; };
 		5CC86E6A1BA4D0C900AC75F1 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC86E631BA4D0C900AC75F1 /* filter.png */; };
@@ -73,6 +74,7 @@
 		5C466B611BA296760068F37B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5C466B631BA29B870068F37B /* mute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mute.png; path = images/mute.png; sourceTree = "<group>"; };
 		5C466B671BA2A6DA0068F37B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5C9A1DDD1BA63D8800F0D4C8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5CC86E611BA4D0C900AC75F1 /* close-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close-search.png"; path = "assets/images/close-search.png"; sourceTree = "<group>"; };
 		5CC86E621BA4D0C900AC75F1 /* close-search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close-search@2x.png"; path = "assets/images/close-search@2x.png"; sourceTree = "<group>"; };
 		5CC86E631BA4D0C900AC75F1 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filter.png; path = assets/images/filter.png; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C9A1DDE1BA63D8800F0D4C8 /* CoreTelephony.framework in Frameworks */,
 				5C466B621BA296760068F37B /* MediaPlayer.framework in Frameworks */,
 				5C466B601BA292DA0068F37B /* AVFoundation.framework in Frameworks */,
 				74CFD4FD19D0C640007364DF /* CoreGraphics.framework in Frameworks */,
@@ -229,6 +232,7 @@
 		74CFD4F919D0C640007364DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C9A1DDD1BA63D8800F0D4C8 /* CoreTelephony.framework */,
 				5C466B611BA296760068F37B /* MediaPlayer.framework */,
 				5C466B5F1BA292DA0068F37B /* AVFoundation.framework */,
 				74CFD4FA19D0C640007364DF /* Foundation.framework */,

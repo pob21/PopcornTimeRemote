@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "POPConnectViewController.h"
+
+@import CoreTelephony;
 
 @interface POPAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) CTCallCenter *callCenter;
+@property (strong, nonatomic) id callingDelegate;
+
 
 @end

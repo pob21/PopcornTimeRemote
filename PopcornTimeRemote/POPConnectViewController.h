@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "POPNetworking.h"
-
+#import "POPAppDelegate.h"
 #import "POPTypeSwitchView.h"
 #import "POPControlView.h"
 #import "POPFilterSelectView.h"
 #import "POPFilterListView.h"
 #import "DFSRemoteControlView.h"
 #import <PKYStepper/PKYStepper.h>
+
 
 typedef enum {
     
@@ -78,7 +79,7 @@ typedef enum {
 
 - (void)executeCommand:(NSNumber *)command;
 - (void)checkIfVideoIsPlaying;
-
+- (void)pauseVideo;
 
 
 
